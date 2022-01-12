@@ -16,3 +16,4 @@ Math.floor(5/2)=2 floor function can be used to round up the value to its predec
 
 to find the length of the string, use length function. <string>.length returns the length of <string>
 
+Unlike strings, arrays are mutable even though they are declared using 'const' keyword.
