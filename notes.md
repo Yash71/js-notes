@@ -17,3 +17,10 @@ Math.floor(5/2)=2 floor function can be used to round up the value to its predec
 to find the length of the string, use length function. <string>.length returns the length of <string>
 
 Unlike strings, arrays are mutable even though they are declared using 'const' keyword.
+
+push(): Used to insert element at the end of the array.
+pop(): Used to remove element from the end of the array. It returns the pop element which can be stored in a variable for further operations.
+shift(): Used to remove element from the beginning of the array. It returns the shifted element which can be stored in a variable for further operations.
+unshift(): Used to insert element at the beginning of the array.
+
+Both global and local variables can have same name but precedence of local variable is higher as compared to global variable.
