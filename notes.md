@@ -14,7 +14,7 @@ Math.floor(5/2)=2 floor function can be used to round up the value to its predec
 
 \\ (adds a backslash) \'( adds a single quote) \" (adds a double quote) \n (escape to the newline) \t ( add an extra tabspace)
 
-to find the length of the string, use length function. <string>.length returns the length of <string>
+To find the length of the string, use length function. <string>.length returns the length of <string>
 
 Unlike strings, arrays are mutable even though they are declared using 'const' keyword.
 
@@ -24,3 +24,18 @@ shift(): Used to remove element from the beginning of the array. It returns the 
 unshift(): Used to insert element at the beginning of the array.
 
 Both global and local variables can have same name but precedence of local variable is higher as compared to global variable.
+
+For comparing two different data types, it must convert one type to another. This is known as Type Coercion.
+  
+Comparison operators that perform type coercion: equality(==), not equal(!=), greater than(>), greater than or equal to(>=), less than(<), less than or equal to(<=).
+Comparison operators that do not perform type corercion: strict equality(===), strictly not equal (!==).  
+Strict equality(===) doesn't perform type conversion. equality operator(==) performs type conversion.
+Typeof(): determines the type of variable or value.  
+Strictly not equal (!===) returns false where strictly equal(===) returns true. Strictly not equal won't convert the data types.
+  
+Objects are very similar to array. Elements can be accessed through properties. They can be used to store data in structured way and can be used for real world entities.
+There are two ways to access the properties of an object: dot notation and bracket notation.
+Dot notation can be used when the property name is known to the user.
+Bracket notation can be used for the property which contain spaces between them. Eg. Obj1["my name"];
+
+  
