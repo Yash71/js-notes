@@ -37,5 +37,26 @@ Objects are very similar to array. Elements can be accessed through properties. 
 There are two ways to access the properties of an object: dot notation and bracket notation.
 Dot notation can be used when the property name is known to the user.
 Bracket notation can be used for the property which contain spaces between them. Eg. Obj1["my name"];
+dynamic collection of propery name:
+  const obj1={
+    "dogName"="doberman"
+  };
+  
+  function accessProperty(var){
+    
+  const firstName="Name";
+  return var+firstName;
+  }
+  
+  const property= accessProperty("dog");
+  console.log(obj1[property]);
 
+a property can be added or modified using dot or bracket notation.
+a property can be deleted using delete <property>.
+to search a propery, use hasOwnProperty(<property_name>)
+  
+  
+  
+  
+  
   
