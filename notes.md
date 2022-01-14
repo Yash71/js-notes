@@ -1,6 +1,6 @@
 JavaScript provides eight different data types which are undefined, null, boolean, string, symbol, bigint, number, and object.
 
-Variable names can be made up of numbers, letters, and $ or _, but may not contain spaces or start with a number.
+Variable names can be made up of numbers, letters, and $ or _, *but may not contain spaces or start with a number.
 
 JS is case-sensitive. One can use camel case to define the variable. In camel case, multiword variable has first letter of variable in lower case and fironest letter of every word as upper case and rest as lower case.
 
@@ -54,9 +54,22 @@ dynamic collection of propery name:
 a property can be added or modified using dot or bracket notation.
 a property can be deleted using delete <property>.
 to search a propery, use hasOwnProperty(<property_name>)
+
+records[id][prop] = records[id][prop] || []; // this is called shortcircuit evaluation
+  Here the prop array is initialised if it does not exists and then the next line is executed.
   
+difference between while and do while loop: **do while loop will always execute once at any cost.**
+
+Math.random(): generates a random decimal number between 0(inclusive) and 1(exclusive). It can return 0 but never returns 1
+To generate whole numbers from 0 to 9: Use Math.random() and multiply it with 10. Later use Math.floor to round down the number to nearest whole number
+   Math.floor(Math.random()*10); // generates 0,1,2,3,4,5,6,7,8,9
   
+To generate a random whole number between a given range, use the following formula:
+   Math.floor(Math.random()*(max-min+1))+min;
+
+parseInt(): To parse a string and return an integer 
+parseInt(string, radix): radix specifies the base of the number in the string. It can be between 2 and 36  
   
-  
+Ternary Operators can be used for nested if-else statments. 
   
   
