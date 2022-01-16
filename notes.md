@@ -264,3 +264,92 @@ Promises are most useful when you have a process that takes an unknown amount of
   });
   ```
   <hr>
+
+Regular expressions are used in programming languages to match parts of strings. If you want to find the word ```the``` in the string ```The dog chased the cat```, you can use ```\the```.
+  
+```.test()```  method takes regex, applies it to a string and returnds ```true``` or ```false```.
+  ``` JS
+  let testStr = "freeCodeCamp";
+  let testRegex = /Code/;
+  testRegex.test(testStr); //returns true
+  ```  
+To search for multiple substrings, one can use ```|``` operator.
+  ``` JS
+  let petString="James has a pet cat.";
+  let petRegex=/dog|cat|bird|fish/;
+  let result=petRegex.test(petString);
+  ```
+The above ```test``` methods won't return true if there is a difference in the case( uppercase or lowercase). To ignore the case, use  ```i``` flag.
+  ``` JS
+  let myString="freeCodeCamp";
+  let fccRegex=/freecodecamp/i;
+  let result=fccRegex.test(myString);
+  ```
+<hr>
+  
+One can laso extract the actual matches you found with the ```.match()``` method.
+Apply the moethod on a string and pass ion the regex inside the parentheses.  
+  ``` JS
+  "Hello, World!".match(/Hello/); // returns ["Hello"]
+  let ourStr = "Regular expressions";
+  let ourRegex = /expressions/;
+  ourStr.match(ourRegex); // returns ["expressions"]
+  ```
+To search or extract a pattern more than once, you can use the ```g``` flag.
+  ``` JS
+  let testStr="Repeat, Repeat, Repeat";
+  let ourRegex=/Repeat/g;
+  testStr.match(ourRegex); // returns ["Repeat", "Repeat", "Repeat"]
+  ```
+To search for similar patterns, use wildcard character ```.```
+  ``` JS
+  let humStr = "I'll hum a song";
+  let hugStr = "Bear hug";
+  let huRegex = /hu./;
+  huRegex.test(humStr); //returns true
+  huRegex.test(hugStr); //returns true
+  ```
+One can create a regex with character classes which allows us to define a group of characters to match by placing them inside square brackets.
+  ``` JS
+  let bigStr = "big";
+  let bagStr = "bag";
+  let bugStr = "bug";
+  let bogStr = "bog";
+  let bgRegex = /b[aiu]g/;
+  bigStr.match(bgRegex); //returns ["big"]
+  bagStr.match(bgRegex); //returns ["bag"]
+  bugStr.match(bgRegex); //returns ["bug"]
+  bogStr.match(bgRegex); //returns null
+  ```
+To match cahracters sets within a given range, one can use the hypen ```-``` character.
+  ``` JS
+  let catStr = "cat";
+  let batStr = "bat";
+  let matStr = "mat";
+  let bgRegex = /[a-e]at/;
+  catStr.match(bgRegex); // returns ["cat"]
+  batStr.match(bgRegex); // returns ["bat"]
+  matStr.match(bgRegex); // returns null
+  ```
+To create a set of characters which don't match use caret ```^``` character after the first opening square bracket and before the characters you don't want to match.  
+  ``` JS
+ let quoteSample = "3 blind mice.";
+ let myRegex = /[^1-9aeiou]/ig; 
+ let result = quoteSample.match(myRegex); 
+  ```
+To match characters that occur zero or more times use ```*```   
+ ``` JS
+ let soccerWord = "gooooooooal!";
+ let gPhrase = "gut feeling";
+ let oPhrase = "over the moon";
+ let goRegex = /go*/;
+ soccerWord.match(goRegex); //returns ["goooooooo"]
+ gPhrase.match(goRegex); // returns ["g"]
+ oPhrase.match(goRegex); //returns null
+ ```
+In regex, greedy match find the longest possible part of string that fits the regex patern and returns it as a match.
+lazy mathc finds the smallest possible part of the string that satisfies the regex pattern.
+Regex expressions are by default greedy but to change it to lazy matching use ```?```
+  
+  
+  
