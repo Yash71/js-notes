@@ -1,3 +1,4 @@
+# Javascript
 JavaScript provides eight different data types which are undefined, null, boolean, string, symbol, bigint, number, and object.
 
 Variable names can be made up of numbers, letters, and $ or _, *but may not contain spaces or start with a number.
@@ -77,8 +78,8 @@ To generate a random whole number between a given range, use the following formu
 ``` JS  parseInt(string, radix) ```: radix specifies the base of the number in the string. It can be between 2 and 36  
 <hr>  
 Ternary Operators can be used for nested if-else statments. 
-<hr>
   
+## ES6 
 ``` Object.freeze() ```: to prevent data mutation. An attempt to change the object will be rejected with an error thrown if the script is running in strict mode.
 <hr>
   
@@ -264,7 +265,8 @@ Promises are most useful when you have a process that takes an unknown amount of
   });
   ```
   <hr>
-
+  
+## Regular Expressions
 Regular expressions are used in programming languages to match parts of strings. If you want to find the word ```the``` in the string ```The dog chased the cat```, you can use ```\the```.
   
 ```.test()```  method takes regex, applies it to a string and returnds ```true``` or ```false```.
@@ -295,12 +297,16 @@ Apply the moethod on a string and pass ion the regex inside the parentheses.
   let ourRegex = /expressions/;
   ourStr.match(ourRegex); // returns ["expressions"]
   ```
+  <hr>
+  
 To search or extract a pattern more than once, you can use the ```g``` flag.
   ``` JS
   let testStr="Repeat, Repeat, Repeat";
   let ourRegex=/Repeat/g;
   testStr.match(ourRegex); // returns ["Repeat", "Repeat", "Repeat"]
   ```
+  <hr>
+  
 To search for similar patterns, use wildcard character ```.```
   ``` JS
   let humStr = "I'll hum a song";
@@ -309,6 +315,8 @@ To search for similar patterns, use wildcard character ```.```
   huRegex.test(humStr); //returns true
   huRegex.test(hugStr); //returns true
   ```
+  <hr>
+  
 One can create a regex with character classes which allows us to define a group of characters to match by placing them inside square brackets.
   ``` JS
   let bigStr = "big";
@@ -350,6 +358,52 @@ To match characters that occur zero or more times use ```*```
 In regex, greedy match find the longest possible part of string that fits the regex patern and returns it as a match.
 lazy mathc finds the smallest possible part of the string that satisfies the regex pattern.
 Regex expressions are by default greedy but to change it to lazy matching use ```?```
+  <hr>
   
+Caret character ```^``` inside character set creates a neagted character set. Outside the character set, is is used to search for patterns at the beginning of the strings
+  ``` JS
+  let firstString = "Ricky is first and can be found.";
+  let firstRegex = /^Ricky/;
+  firstRegex.test(firstString); // returns true
+  let notFirst = "You can't find Ricky now.";
+  firstRegex.test(notFirst) // returns false
+  ```
+Dollar ```$``` character can be used to search for patterns at the end of the strings
+  ``` JS
+  let theEnding = "This is a never ending story";
+  let storyRegex = /story$/;
+  storyRegex.test(theEnding);
+  let noEnding = "Sometimes a story will have to end";
+  storyRegex.test(noEnding);
+  ```
+  <hr>
+  
+The closes character class in JS to match the alphabet is ```\w``` which is equal to ```[A-Z-a-z-0-9_]```
+  ``` JS
+  let longHand = /[A-Za-z0-9_]+/;
+  let shortHand = /\w+/;
+  let numbers = "42";
+  let varNames = "important_var";
+  longHand.test(numbers); // returns true
+  shortHand.test(numbers); // returns true
+  longHand.test(varNames); // returns true
+  longHand.test(varNames); // returns true
+  ```
+  <hr>
+  
+To search for opposite of alphanumerics use ```\W```
+  ``` JS
+  let shortHand = /\W/;
+  let numbers = "42%";
+  let sentence = "Coding!";
+  numbers.match(shortHand); // returns ["%"]
+  sentence.match(shortHand); // returns ["!"]
+  ```
+<hr>
+  
+For digit characters use ```\d```
+For non-digit characters use ```\D``` ([^0-9])  
+  
+<hr>  
   
   
