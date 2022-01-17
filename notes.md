@@ -481,5 +481,76 @@ To replace a string use ```.replace()```
   ```
   <hr>
   
+## Basic Data Structures
+TO remove consecutive elements from anywhere in the array use ```splice()``` . 
+Splice accepts 3 parameters, out which 2 are integers. 1st parameter represents the starting index from where the removal will begin and the 2nd parameter represents the number of elements to be removed.
+    ``` JS
+  let array = ['today', 'was', 'not', 'so', 'great'];
+  array.splice(2, 2); // returns ['today', 'was', 'great']
+  ```
+The third parameter of ```splice``` can be used to add elements to the index from where the element were removed
+  ``` JS
+  const numbers = [10, 11, 12, 12, 15];
+  const startIndex = 3;
+  const amountToDelete = 1;
+
+  numbers.splice(startIndex, amountToDelete, 13, 14);
+  console.log(numbers);
+  ```
+<hr>
+
+To extract elements from the array, use ```slice()```. It accepts two parameters: startIndex and endIndex. The endIndex won't be included in extraction.
+  ``` JS
+  let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+  let todaysWeather = weatherConditions.slice(1, 3); // returns ['snow', 'sleet']
+  ```
+To copy the array to another array, use ```...``` opeartor
+  ``` JS
+  let thisArray = [true, true, undefined, false, null];
+  let thatArray = [...thisArray];
+  ```
+To check if the element in the array exists or not use ```indexOf()```. This would return the position of the element or -1 if its absent.
+  ``` JS
+  let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+  fruits.indexOf('dates'); // returns 2
+  fruits.indexOf('oranges'); // returns -1
+  fruits.indexOf('pears'); // returns 1
+  ```
+To itterate through the keys of the object, use for...in loop
+  ``` JS
+  for(let user in users){
+    console.log(user);
+  }
+  ```
+To generate an array which contains all the keys stored in the object, use ```Object.keys(<object name>)```
+  ``` JS
+  let users = {
+    Alan: {
+      age: 27,
+      online: false
+    },
+    Jeff: {
+      age: 32,
+      online: true
+    },
+    Sarah: {
+      age: 48,
+      online: false
+    },
+    Ryan: {
+      age: 19,
+      online: true
+    }
+  };
+  function getArrayOfUsers(obj) { 
+    let array=Object.keys(obj);
+    return array;
+  }
+  console.log(getArrayOfUsers(users));
+  ```
+  
+  
+  
+  
   
   
