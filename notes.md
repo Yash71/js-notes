@@ -405,5 +405,66 @@ For digit characters use ```\d```
 For non-digit characters use ```\D``` ([^0-9])  
   
 <hr>  
+
+To match white spaces use ```\s```. This contains the character set of return, tab, form feed, and new line characters [\r\t\f\n\v]
+To match non-white spaces use ```\S``` [^\r\t\f\n\v]
+  
+To match a certain range of patterns, use quantity specifiers with curly brackets ```{ ```and ```}```   
+  ``` JS
+  let A4 = "aaaah";
+  let A2 = "aah";
+  let multipleA = /a{3,5}h/;
+  multipleA.test(A4); // returns true since a appears 4 times which lies in the range of 3 and 5
+  multipleA.test(A2); //return false since a appears only 2 times which doesn't lie in the range of 3 and 5
+  ```
+To specify the lower number of patterns, keep the first number followed by a comma
+  ``` JS
+  let A4 = "haaaah";
+  let A2 = "haah";
+  let A100 = "h" + "a".repeat(100) + "h";
+  let multipleA = /ha{3,}h/;
+  multipleA.test(A4); //returns true
+  multipleA.test(A2); //returns false
+  multipleA.test(A100); //returns true
+  ```
+To specify the certain number of matches, just use a single number between the braces.
+  ``` JS
+  let A4 = "haaaah";
+  let A3 = "haaah";
+  let A100 = "h" + "a".repeat(100) + "h";
+  let multipleHA = /ha{3}h/;
+  multipleHA.test(A4); // returns false
+  multipleHA.test(A3); // returns true
+  multipleHA.test(A100); // returns false
+  ```
+To search for the parts of the patterns if they exist or not, use ```?``` .
+**When using this symbol, the previous element is optional**    
+  ``` JS
+  let american = "color";
+  let british = "colour";
+  let rainbowRegex= /colou?r/;
+  rainbowRegex.test(american); // returns true
+  rainbowRegex.test(british); // returns true
+
+Lookaheads are pattersn to look-ahead in your string to check for patterns further along. There are two types of look-aheads: positive and negative lookahead
+A positive lookahead will look to make sure the elemen in the search pattern is there, but won't actually match it. ```(?=...)```, ```...```  is the required part that is not matched.
+A negative lookahead will look to make sure the element in the search pattern is not there. ```(?!...)```
+  ``` JS
+  let quit = "qu";
+  let noquit = "qt";
+  let quRegex= /q(?=u)/;
+  let qRegex = /q(?!u)/;
+  quit.match(quRegex);
+  noquit.match(qRegex);
+  ```
+To check for the group of characters using a regualar expression, use parentheses.
+  ``` JS
+  let testStr = "Pumpkin";
+  let testRegex = /P(engu|umpk)in/;
+  testRegex.test(testStr);
+  ```
+  
+  
+  
   
   
