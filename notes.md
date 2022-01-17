@@ -482,12 +482,15 @@ To replace a string use ```.replace()```
   <hr>
   
 ## Basic Data Structures
+  
 TO remove consecutive elements from anywhere in the array use ```splice()``` . 
+  
 Splice accepts 3 parameters, out which 2 are integers. 1st parameter represents the starting index from where the removal will begin and the 2nd parameter represents the number of elements to be removed.
-    ``` JS
+  ``` JS
   let array = ['today', 'was', 'not', 'so', 'great'];
   array.splice(2, 2); // returns ['today', 'was', 'great']
   ```
+  
 The third parameter of ```splice``` can be used to add elements to the index from where the element were removed
   ``` JS
   const numbers = [10, 11, 12, 12, 15];
