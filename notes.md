@@ -561,6 +561,10 @@ To generate an array which contains all the keys stored in the object, use ```Ob
   }
   console.log(getArrayOfUsers(users));
   ```
+To sort an array in ascending order
+  ``` JS
+  arr.sort((curr,next) => curr-num);
+  ```
   
   
   
