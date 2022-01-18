@@ -507,6 +507,16 @@ To extract elements from the array, use ```slice()```. It accepts two parameters
   let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
   let todaysWeather = weatherConditions.slice(1, 3); // returns ['snow', 'sleet']
   ```
+To insert the elements of one array into an arbitrary position in another array
+  
+  ``` JS
+  // arr1=[1,2,3] arr2=[4,5]
+  let finalArr=arr2.slice();
+  for(let i=0;i<arr1.length;i++){
+    finalArr.splice(n,0,arr1[i]);
+    n++;                                    
+  }
+  ```                              
 To copy the array to another array, use ```...``` opeartor
   ``` JS
   let thisArray = [true, true, undefined, false, null];
