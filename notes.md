@@ -516,12 +516,16 @@ To insert the elements of one array into an arbitrary position in another array
     finalArr.splice(n,0,arr1[i]);
     n++;                                    
   }
-  ```                              
+  ```
+<hr>
+  
 To copy the array to another array, use ```...``` opeartor
   ``` JS
   let thisArray = [true, true, undefined, false, null];
   let thatArray = [...thisArray];
   ```
+  <hr>
+  
 To check if the element in the array exists or not use ```indexOf()```. This would return the position of the element or -1 if its absent.
   ``` JS
   let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
@@ -529,12 +533,16 @@ To check if the element in the array exists or not use ```indexOf()```. This wou
   fruits.indexOf('oranges'); // returns -1
   fruits.indexOf('pears'); // returns 1
   ```
+  <hr>
+  
 To itterate through the keys of the object, use for...in loop
   ``` JS
   for(let user in users){
     console.log(user);
   }
   ```
+  <hr>
+  
 To generate an array which contains all the keys stored in the object, use ```Object.keys(<object name>)```
   ``` JS
   let users = {
@@ -561,13 +569,204 @@ To generate an array which contains all the keys stored in the object, use ```Ob
   }
   console.log(getArrayOfUsers(users));
   ```
+  <hr>
+  
 To sort an array in ascending order
   ``` JS
   arr.sort((curr,next) => curr-num);
   ```
+
+## Object Oriented Programming  
+
+Dot notation can be a problem while accessing the the object's property. If the variable name changes, any code referencing the original name would need to be changed for proper functioning. To avoid this, use ```this``` keyword.
+  ``` JS
+  let duck = {
+    name: "Aflac",
+    numLegs: 2,
+    sayName: function() {return "The name of this duck is " + this.name + ".";}
+  };
+  ```
+  <hr>
   
+Constructors are functions that create new objects.
+Constructors are defined with a capitalized name and use keyword ```this``` to set properties of the object they will create.  
   
+```new``` operator is used when calling a constructor. This creates a new instance of ```Bird``` called ```blueBird```.
+  ``` JS
+  function Bird() {
+    this.name = "Albert";
+    this.color  = "blue";
+    this.numLegs = 2;
+  }
+  let blueBird = new Bird();
+  ```
+```instanceof``` allows to compare an object to a constructor, returning ```true``` or ```false``` based on whether the object is created with the constructor or not.
+  ``` JS
+  let Bird = function(name, color) {
+    this.name = name;
+    this.color = color;
+    this.numLegs = 2;
+  }
+  let crow = new Bird("Alexis", "black");
+  crow instanceof Bird;  // returns true
+  ```
+  <hr>
   
+There are two kinds of properties: own properties and prototype properties. Own props. are defined directly on the object instance itself. Prototype properties are defined on the ```prototype```.
   
+Properties in the ```prototype``` are shared among all instance of an object
+  ``` JS
+  Bird.prototype.numLegs=2;
+  console.log(duck.numLegs);
+  console.log(canary.numLegs);
+  ```
+```constructor``` property is a reference to the constructor function that created the instance. It's possible to check for this property to find out what kind of object it is. This property can be overwritten.
+  ``` JS
+  function joinBirdFraternity(candidate) {
+    if (candidate.constructor === Bird) {
+      return true;
+    } else {
+     return false;
+   }
+  }
+  ```
+  <hr>
   
+A more efficient way to set the ```prototype``` to a new object that already contains the properties.  
+  ``` JS
+  function Dog(name) {
+  this.name = name;
+  }
+  Dog.prototype = {
+    numLegs:2,
+    eat:function(){
+      console.log("nom nom nom");
+    },
+    describe:function(){
+      console.log("My name is "+this.name);
+    }
+  };
+  ```
+The side effect of manually setting the prototype to a new object is: **it ereases the ```constructor``` property**
+If a prototype is manually assigned to the object, define ```constructor``` property.
+  ``` JS
+  Bird.prototype = {
+    constructor: Bird,
+    numLegs: 2,
+    eat: function() {
+      console.log("nom nom nom");
+    },
+    describe: function() {
+       console.log("My name is " + this.name); 
+    }
+  };
+  ```
+  <hr>
   
+an object inherits its ```prototype``` directly from the constructor. This can be show with the ```isPrototypeOf``` method.
+  ``` JS
+  function Bird(name) {
+    this.name = name;
+  }
+  let duck = new Bird("Donald");
+  Bird.prototype.isPrototypeOf(duck); // returns true
+  ```
+All objects in JS have a ```prototype```. An object's prototype itself is an object.
+  ``` JS
+  function Bird(name) {
+    this.name = name;
+  }
+  typeof Bird.prototype; // returns object
+  ```
+  The prototype of ```Bird.prototype``` is ```Object.prototype```
+  ``` JS 
+  Object.prototype.isPrototypeOf(Bird.prototype);
+  ```
+```hasOwnProperty``` method is defined in ```Object.prototype```, which can be accessed by ```Bird.prototype```, which can be accessed by ```duck```. This is an example of ```prototype``` chain.
+
+<hr>
+
+To inherit the properties from a ```supertype/parent```, one can use inheritance.<br>
+**first**, create an instance of the ```supertype```
+  ``` JS
+  let animal=new Animal();
+  ```
+Instead of using above syntax for inheritance, use the following:
+  ``` JS
+  let animal=Object.create(Animal.prototype);
+  ```
+**second**, set the ```prototype``` of the child(subtype) to be an instance of parent(supertype)
+  ``` JS
+  Bird.prototype=Object.create(Animal.prototype);
+  ```
+When an object inherits its ```prototype``` from another object, it also inherits the supetype's constructor property.
+  ``` JS
+  function Bird() { }
+  Bird.prototype = Object.create(Animal.prototype);
+  let duck = new Bird();
+  duck.constructor 
+  ```
+```duck```and all instances of ```Bird``` should show that they were constructed by ```Bird``` and not ```Animal```. To change it, do the manual setting
+  ``` JS
+  Bird.prototype.constructor=Bird;
+  duck.constructor
+  ```
+  <hr>
+  
+For unrelated objects, use *mixins*. It allows other objects to use a collection of functions.
+  ``` JS
+  let flyMixin = function(obj) {
+    obj.fly = function() {
+      console.log("Flying, wooosh!");
+    }
+  };
+  let bird = {
+    name: "Donald",
+    numLegs: 2
+  };
+
+  let plane = {
+    model: "777",
+    numPassengers: 524
+  };
+
+  flyMixin(bird); // prints Flying, wooosh!
+  flyMixin(plane); // prints Flying, wooosh!
+  ```
+  <hr>
+  
+A common pattern in JS is to execute a function as soon as it is declared
+  ``` JS
+  (function () {
+    console.log("Chirp, chirp!");
+  })();
+  ```
+  The two parentheses at the end cuase it to be immediately invoked. This pattern is known as an immediately invoked function expression or IIFE
+
+IIFE can be used to group related functionality into a single object or module.
+  ``` JS
+  let isCuteMixin = function(obj) {
+    obj.isCute = function() {
+      return true;
+    };
+  };
+  let singMixin = function(obj) {
+    obj.sing = function() {
+      console.log("Singing to an awesome tune");
+    };
+  };
+  let funModule= (function(){
+    return{
+      isCuteMixin:function(obj){
+        obj.isCute=function(){
+          return true;
+        };
+      },
+      singMixin:function(obj){
+        obj.singMixin=function(){
+          console.log("Singing to an awesome tune");
+        };
+      }
+    }
+  })();
+  ```
