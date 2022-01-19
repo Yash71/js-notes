@@ -770,3 +770,35 @@ IIFE can be used to group related functionality into a single object or module.
     }
   })();
   ```
+  
+## Functional Programming
+It is about: Isolated functions(there is no dependence on state of progam, which includes global variables that are subject to change), pure functions (the same input always give the same output), Functions with limited side effect (any mutations to the state of program outside the function are carefully controlled)
+
+### Callbacks
+  
+Functions that are slipped or passed into another functoin to decide the invocation of that function.
+
+### First Class Functions  
+functions that can be assigned to a variable, passed into another functoin or returned from anothe function. All functions are first class functions  
+
+### High Order Functions, 
+the functions that take a function as an argument, or return a function as a return value
+
+Various operations like increment and decrement mutate the value of the variable, hence they should be avoided as much as possible.  
+   
+Another principle of functional progamming is to always declare your dependecies explicitly. If a function depends on a variable or object, then pass that variable or object directly into the function as an argument.
+
+  <hr>
+  
+the ```map``` method iterates over each item in an array and returns a new array containing the results of calling the callback function on each element. It does this without mutating the original array.  
+
+```filter``` calls a function on each element of an array and returns a new array containing only the elements for which that function returns ```true```. It does this without mutating the original array.
+  
+```concat``` joins two arrays and returns a new array without modifying either of the two arrays.
+  
+```reduce``` method iterates over each item in an array and returns a single value which is achieved via a callback function that is called on each iteration.
+In addition to callback function, ```reduce``` takes accumulator as an extra parameter. If this parameter is not given, then the first iteration is skipped and the second iteration gets passed.  
+  
+  
+  
+  
