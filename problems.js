@@ -120,26 +120,109 @@ function myReplace(str, before, after) {
     else {
         after = after.charAt(0).toLowerCase() + after.slice(1);
     }
-    return str.replace(before,after);
+    return str.replace(before, after);
 }
 // DNA Pairing
-function pairElement(str){
-    let finalArr=[];
-    let check=function(char){
-        switch(char){
+function pairElement(str) {
+    let finalArr = [];
+    let check = function (char) {
+        switch (char) {
             case "A":
-            finalArr.push(["A","T"]);
+                finalArr.push(["A", "T"]);
             case "T":
-            finalArr.push(["T","A"]);
+                finalArr.push(["T", "A"]);
             case "C":
-            finalArr.push(["C","G"]);
+                finalArr.push(["C", "G"]);
             case "G":
-            finalArr.push(["G","C"]);
+                finalArr.push(["G", "C"]);
         }
     }
-    for(let i=0;i<str.length;i++){
+    for (let i = 0; i < str.length; i++) {
         check(str[i]);
     }
     return finalArr;
 }
 //Missing Letters
+function fearNotLetter(str) {
+    for (let i = 1; i < str.length; i++) {
+        if (str.charCodeAt(i) - str.charCodeAt(i - 1) > 1) {
+            return String.fromCharCode(str.charCodeAt(i - 1) + 1);
+        }
+    }
+}
+//Sorted Union
+function uniteUnique(arr) {
+    let finalArray = [];
+    for (let i = 0; i < arguments.length; i++) {
+        let arrayArguments = arguments[i];
+
+        for (let j = 0; j < arrayArguments.length; j++) {
+            if (finalArray.indexOf(arrayArguments[j]) < 0) {
+                finalArray.push(arrayArguments[j]);
+            }
+        }
+    }
+    return finalArray;
+}
+//Sorted Union
+function uniteUnique(arr) {
+    let finalArray = [];
+    for (let i = 0; i < arguments.length; i++) {
+        let arrayArguments = arguments[i];
+
+        for (let j = 0; j < arrayArguments.length; j++) {
+            if (finalArray.indexOf(arrayArguments[j]) < 0) {
+                finalArray.push(arrayArguments[j]);
+            }
+        }
+    }
+    return finalArray;
+}
+//Convert HTML Entities
+function convertHTML(str) {
+    let array = str.split("");
+    for (let i = 0; i < array.length; i++) {
+        switch (array[i]) {
+            case "<":
+                array[i] = "&lt;";
+                break;
+            case ">":
+                array[i] = "&gt;";
+                break;
+            case "'":
+                array[i] = "&apos;";
+                break;
+            case '"':
+                array[i] = "&quot;";
+                break;
+            case "&":
+                array[i] = "&amp;";
+                break;
+        }
+    }
+    return array.join("");
+}
+// Sum All Odd Fibonacci Numbers
+function sumFibs(num) {
+    //method 1
+    if (num <= 0) return 0;
+    const arrFib = [1, 1];
+    let nextFib = 0;
+    while ((nextFib = arrFib[0] + arrFib[1]) <= num) {
+        arrFib.unshift(nextFib);
+    }
+    return arrFib.filter(x => x % 2 != 0).reduce((a, b) => a + b);
+    //method 2
+    let prevNumber = 0;
+    let currNumber = 1;
+    let result = 0;
+    while (currNumber <= num) {
+        if (currNumber % 2 !== 0) {
+            result += currNumber;
+        }
+        currNumber += prevNumber;
+        prevNumber = currNumber - prevNumber;
+    }
+
+    return result;
+}
