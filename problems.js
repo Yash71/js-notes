@@ -62,14 +62,43 @@ function mutation(arr) {
 //Chunky Monkey
 function chunkArrayInGroups(arr, size) {
     // method 1
-    let finalArr=[];
-    while(arr.length>0){
-      finalArr.push(arr.splice(0,size));
-    }  
+    let finalArr = [];
+    while (arr.length > 0) {
+        finalArr.push(arr.splice(0, size));
+    }
     //method 2
-    for(let i=0;i<arr.length;i+=size){
-        finalArr.push(arr.slice(i,i+size));
+    for (let i = 0; i < arr.length; i += size) {
+        finalArr.push(arr.slice(i, i + size));
     }
 
     return finalArr;
-  }
+}
+// Wherefore art thou
+function whatIsInAName(collection, source) {
+    let srcKeys = Object.keys(source);
+    //method 1
+    return collection.filter(function (obj) {
+        return srcKeys.every(function (key) {
+            return obj.hasOwnProperty(key) && obj[key] === source[key];
+        });
+    });
+    //method 2
+    return collection.filer(function (obj) {
+        for (let i = 0; i < srcKeys.length; i++) {
+            if (!obj.hasOwnProperty(srcKeys[i]) && obj[srcKeys[i]] !== source[srcKeys[i]]) {
+                return false;
+            }
+            return true;
+        }
+    });
+}
+//Spinal Test Case
+function spinalCase(str){
+    return str.split(/\s|_|(?=[A-Z])/).join("-").toLowerCase();
+}
+// Pig Latin
+function translatePigLatin(str){
+    let testRegex=/^[^aeiou]+/;
+    let consonants=str.match(testRegex);
+    return consonants !== null ? str.replace(testRegex,"").concat(consonants).concat("ay") : str.concat("way");
+}

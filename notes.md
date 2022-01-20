@@ -479,6 +479,13 @@ To replace a string use ```.replace()```
   let silverRegex = /silver/;
   wrongText.replace(silverRegex, "blue");    
   ```
+To return a certain part of the string, use ```substring()```. The end index is not included in the truncation.
+  ``` JS
+  const str = 'Mozilla';
+  console.log(str.substring(1, 3)); // prints oz
+  console.log(str.substring(2)); // prints zilla
+  ```
+ 
   <hr>
   
 ## Basic Data Structures
