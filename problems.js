@@ -93,12 +93,32 @@ function whatIsInAName(collection, source) {
     });
 }
 //Spinal Test Case
-function spinalCase(str){
+function spinalCase(str) {
     return str.split(/\s|_|(?=[A-Z])/).join("-").toLowerCase();
 }
 // Pig Latin
-function translatePigLatin(str){
-    let testRegex=/^[^aeiou]+/;
-    let consonants=str.match(testRegex);
-    return consonants !== null ? str.replace(testRegex,"").concat(consonants).concat("ay") : str.concat("way");
+function translatePigLatin(str) {
+    let testRegex = /^[^aeiou]+/;
+    let consonants = str.match(testRegex);
+    return consonants !== null ? str.replace(testRegex, "").concat(consonants).concat("ay") : str.concat("way");
+}
+// Search and Replace
+function myReplace(str, before, after) {
+    // method 1
+    if (/^[A-Z]/.test(before)) {
+        after = after[0].toUpperCase() + after.substring(1);
+    }
+    else {
+        after = after[0].toLowerCase() + after.substring(1);
+    }
+    return str.replace(before, after);
+    //method 2
+    let beforeIndex = str.indexOf(before);
+    if (str[index] === str[index].toUpperCase()) {
+        after = after.charAt(0).toUpperCase() + after.slice(1);
+    }
+    else {
+        after = after.charAt(0).toLowerCase() + after.slice(1);
+    }
+    return str.replace(before,after);
 }
