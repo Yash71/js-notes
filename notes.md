@@ -787,10 +787,12 @@ It is about: Isolated functions(there is no dependence on state of progam, which
 ### Callbacks
   
 Functions that are slipped or passed into another functoin to decide the invocation of that function.
-
+<hr>
+  
 ### First Class Functions  
 functions that can be assigned to a variable, passed into another functoin or returned from anothe function. All functions are first class functions  
-
+<hr>
+  
 ### High Order Functions, 
 the functions that take a function as an argument, or return a function as a return value
 
@@ -811,6 +813,8 @@ In addition to callback function, ```reduce``` takes accumulator as an extra par
   
 ```split``` method splits  string into an array of strings.
 
+  <hr>
+  
 ```every``` method checks if every element satisfies a given criteria. If the condition is met for every element, it returns ```true``` whereas if a single element fails to satisfy the criteria, it returns ```false```.  
   ``` JS
   const numbers = [1, 5, 8, 0, 10, 11];
@@ -826,6 +830,8 @@ In addition to callback function, ```reduce``` takes accumulator as an extra par
     return currentValue < 10;
   });
   ```
+  <hr>
+  
 The arity of a function is the number of arguments it requires. Currying a function means to convert a functoin of N arity into N functions of arity 1.
   ``` JS
   function unCurried(x, y) {
