@@ -592,6 +592,14 @@ To sort an array in alphabetical order
   return arr;
   }
   ```
+To convert an array of intergers to its binary conjugate string array
+  ``` JS
+  function binary(x){
+    return x.ToString(2);
+  }
+  const output=arr.map(binary);
+  return output;
+  ```
   
 ## Object Oriented Programming  
 
@@ -837,6 +845,7 @@ In addition to callback function, ```reduce``` takes accumulator as an extra par
     return currentValue < 10;
   });
   ```
+
   <hr>
   
 The arity of a function is the number of arguments it requires. Currying a function means to convert a functoin of N arity into N functions of arity 1.
