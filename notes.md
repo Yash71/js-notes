@@ -34,7 +34,7 @@ Comparison operators that perform type coercion: equality(```==```), not equal(`
 Comparison operators that do not perform type corercion: strict equality(```===```), strictly not equal (```!==```).  
 Strict equality(===) doesn't perform type conversion. equality operator(==) performs type conversion.
 ```Typeof()```: determines the type of variable or value.  
-Strictly not equal (```!===```) returns false where strictly equal(```===```) returns true. Strictly not equal won't convert the data types.
+Strictly not equal (```!==```) returns false where strictly equal(```===```) returns true. Strictly not equal won't convert the data types.
 <hr>
   
 Objects are very similar to array. Elements can be accessed through properties. They can be used to store data in structured way and can be used for real world entities.
@@ -575,7 +575,17 @@ To sort an array in ascending order
   ``` JS
   arr.sort((curr,next) => curr-num);
   ```
-
+  
+To sort an array in alphabetical order
+  ``` JS
+  function alphabetical(arr){
+    arr.sort(function(a,b){
+      return a===b ? 0:a>b?1:-1;
+    });
+  return arr;
+  }
+  ```
+  
 ## Object Oriented Programming  
 
 Dot notation can be a problem while accessing the the object's property. If the variable name changes, any code referencing the original name would need to be changed for proper functioning. To avoid this, use ```this``` keyword.
@@ -706,7 +716,7 @@ When an object inherits its ```prototype``` from another object, it also inherit
   let duck = new Bird();
   duck.constructor 
   ```
-```duck```and all instances of ```Bird``` should show that they were constructed by ```Bird``` and not ```Animal```. To change it, do the manual setting
+```duck``` and all instances of ```Bird``` should show that they were constructed by ```Bird``` and not ```Animal```. To change it, do the manual setting
   ``` JS
   Bird.prototype.constructor=Bird;
   duck.constructor
@@ -799,6 +809,47 @@ the ```map``` method iterates over each item in an array and returns a new array
 ```reduce``` method iterates over each item in an array and returns a single value which is achieved via a callback function that is called on each iteration.
 In addition to callback function, ```reduce``` takes accumulator as an extra parameter. If this parameter is not given, then the first iteration is skipped and the second iteration gets passed.  
   
+```split``` method splits  string into an array of strings.
+
+```every``` method checks if every element satisfies a given criteria. If the condition is met for every element, it returns ```true``` whereas if a single element fails to satisfy the criteria, it returns ```false```.  
+  ``` JS
+  const numbers = [1, 5, 8, 0, 10, 11];
+  numbers.every(function(currentValue) {
+    return currentValue < 10; // returns false
+  });
+  ```
+
+```some``` method checks if any element satisfies a given criteria. If the condition is met for a single element, it returns ```true``` els it returns ```false```
+  ``` JS
+  const numbers = [10, 50, 8, 220, 110, 11];
+  numbers.some(function(currentValue) {
+    return currentValue < 10;
+  });
+  ```
+The arity of a function is the number of arguments it requires. Currying a function means to convert a functoin of N arity into N functions of arity 1.
+  ``` JS
+  function unCurried(x, y) {
+    return x + y;
+  }
+  function curried(x) {
+    return function(y) {
+      return x + y;
+    }
+  }
+  const curried = x => y => x + y
+  curried(1)(2)
+  ```
+This can be useful if you can't supply all the arguments to a function at one time. You can save each each function call into a variable, which will hold the returned function reference that takes the next argument when it's available.
   
+Parity application can be described as applying a few arguments to a function at a time and returning another function that is applied to mroe arguments.
+  ``` JS
+  function impartial(x, y, z) {
+    return x + y + z;
+  }
+  const partialFn = impartial.bind(this, 1, 2);
+  partialFn(10); // returns 13
+  ```
+  
+
   
   
