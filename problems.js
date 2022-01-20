@@ -122,3 +122,24 @@ function myReplace(str, before, after) {
     }
     return str.replace(before,after);
 }
+// DNA Pairing
+function pairElement(str){
+    let finalArr=[];
+    let check=function(char){
+        switch(char){
+            case "A":
+            finalArr.push(["A","T"]);
+            case "T":
+            finalArr.push(["T","A"]);
+            case "C":
+            finalArr.push(["C","G"]);
+            case "G":
+            finalArr.push(["G","C"]);
+        }
+    }
+    for(let i=0;i<str.length;i++){
+        check(str[i]);
+    }
+    return finalArr;
+}
+//Missing Letters
