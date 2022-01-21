@@ -226,3 +226,154 @@ function sumFibs(num) {
 
     return result;
 }
+// Sum All Primes
+function sumPrimes(num) {
+    let prime = Array.from({ length: n + 1 }, (_, i) => true);
+    for (let p = 2; p * p <= num; p++) {
+        if (prime[p] == true) {
+            for (let i = p * p; i <= num; i += p) {
+                prime[i] = false;
+            }
+        }
+    }
+    let sum = 0;
+    for (let i = 2; i <= num; i++) {
+        if (prime[i] == true) {
+            sum += i;
+        }
+    }
+    return sum;
+}
+// Smallest Common Multiple
+function smallEstCommons(arr) {
+    // method 1
+    let maxDivisor = Math.max(arr[0], arr[1]);
+    let minDivisor = Math.min(arr[0], arr[1]);
+    let divisorRange = maxDivisor - minDivisor + 1;
+
+    let maxMultiple = 1;
+    for (let i = minDivisor; i <= maxDivisor; i++) {
+        maxMultiple *= i;
+    }
+    for (let multiple = maxDivisor; multiple <= maxMultiple; multiple += maxDivisor) {
+        let actualDivisors = 0;
+        for (let i = minDivisor; i <= maxDivisor; i++) {
+            if (multiple % i === 0) {
+                actualDivisors += 1;
+            }
+        }
+        if (actualDivisors === divisorRange) {
+            return multiple;
+        }
+    }
+    // method 2
+    let multiple = maxDivisor;
+    for (let i = maxDivisor; i >= minDivisor; i--) {
+        if (multiple % i != 0) {
+            multiple += maxDivisor;
+            i = maxDivisor;
+        }
+    }
+    return multiple;
+}
+// Drop it
+function dropElements(arr, func) {
+    // method 1
+    let originalLength = arr.length;
+    for (let i = 0; i < originalLength; i++) {
+        if (func(arr[0]) == false) {
+            arr.shift();
+        }
+        else {
+            break;
+        }
+    }
+    return arr;
+    // method 2
+    while (arr.length > 0 || !func(arr[0])) {
+        arr.shift();
+    }
+    return arr;
+
+    //method 3
+    let sliceIndex = arr.findIndex(func);
+    return arr.slice(sliceIndex >= 0 ? sliceIndex : arr.length);
+}
+// Steamroller
+function steamrollArray(arr) {
+    let finalArray = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+            finalArray.push(...streamrollArray(arr[i]));
+        }
+        else {
+            finalArray.push(arr[i]);
+        }
+    }
+    return finalArray;
+}
+// Binary Agents
+function binaryAgent(str) {
+    return str.split(" ").map(item => String.fromCharCode(parseInt(item, 2))).join("");
+}
+// Everything Be True
+function truthCheck(collection, pre) {
+    //method 1
+    let counter = 0;
+    for (let element in collection) {
+        if (collection[element].hasOwnProperty(pre) && Boolean(collection[element][pre])) {
+            counter++;
+        }
+    }
+    return counter == collection.length;
+    // method 2
+    return collection.every(element => element.hasOwnProperty(pre) && Boolean(element[pre]));
+}
+// Arguments Optimal
+function addTogether() {
+    const [firstArg, secondArg] = arguments;
+    if (typeof (firstArg) !== "number") return undefined;
+    if (secondArg === undefined) return second => addTogether(firstArg, secondArg);
+    if (typeof (secondArg) === "number") return firstArg + secondArg;
+}
+// Make a Person
+const Person = function (firstAndLast) {
+    let fullName = firstAndLast;
+    this.setFirstName = function (first) {
+        fullName = first + " " + fullName.split(" ")[1];
+    };
+    this.setLastName = function (last) {
+        fullName = fullName.split(" ")[0] + " " + last;
+    };
+    this.setFullName = function (firstAndLast) {
+        fullName = fullName = firstAndLast;
+    };
+    this.getFullName = function () {
+        return fullName;
+    };
+    this.getFirstName = function () {
+        return fullName.split(" ")[0];
+    }
+    this.getLastName = function () {
+        return fullName.split(" ")[1];
+    }
+
+};
+// Map the Debris
+function orbitalPeriod(arr) {
+    const GM = 398600.4418;
+    const earthRadius = 6367.4447;
+    const a = 2 * Math.PI;
+    const newArr = [];
+
+    const getOrbPeriod = function (obj) {
+        const c = Math.pow(earthRadius + obj.avgAlt, 3);
+        const b = Math.sqrt(c / GM);
+        const orbPeriod = Math.round(a * b);
+        return { name: obj.name, orbitalPeriod: orbPeriod };
+    };
+    for (let elem in arr) {
+        newArr.push(getOrbPeriod(arr[elem]));
+    }
+    return newArr;
+}
